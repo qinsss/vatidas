@@ -1,0 +1,94 @@
+body{
+	margin:30px;
+	background-color:#eaeaea;
+	text-align:center;
+}
+#reminder_text_div{
+	margin:10px 0 20px 50px;
+	float:left;
+	font-family:"仿宋";
+	color:#607fba;
+	font-size:23px;
+}
+#right_table_div{
+	clear:both;
+	margin-top:4s0px;
+	margin-left:50px;
+}
+select{
+	margin:10px;		
+	border-radius:2px;
+	margin:10px;
+	line-height:25px;
+	font-size:17px;
+	font-family:"仿宋";
+	color:#607FB5;
+}
+option{
+	font-family:'仿宋';
+	font-size:17px;
+	color:#607FB5;
+}
+
+#right_table{ 
+	border-collapse:collapse;
+	width:70%;
+	table-layout: fixed;
+	word-wrap:break-word;
+	
+}
+td,th{
+	border:2px solid #dedede;
+	line-height:25px;
+ }
+th{
+	background-color:#4f81bc;
+	font-family:'仿宋';
+
+	border-top:2px solid #dedede;
+	border-bottom:2px solid #dedede;
+	font-size:20px;
+	border:0;
+	color:#fff;
+}
+td{
+	line-height:30px;
+	font-family:'仿宋';
+	font-size:21px;
+	color:#1B1C21;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-align:center;
+}
+td:hover{
+	overflow: visible;
+	white-space: normal;
+}
+#allChoice_button,#confirm_button{
+	margin-top:10px;	
+	margin-bottom:10px;
+	width:100px;
+	padding:1px;
+	background-color:#0078d7;
+	cursor:pointer;
+	border:2px solid #607FB5;
+	border-radius:10px;
+	height:30px;
+	font-size:21px;
+	font-family:"宋体";
+	text-align:center;
+	color:#F2F2FD;
+}
+input{
+	line-height:30px;
+	font-family:'仿宋';
+	font-size:17px;
+	color:#1B1C21;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-align:left;
+	border:0px;
+	background-color:#eaeaea;
+}

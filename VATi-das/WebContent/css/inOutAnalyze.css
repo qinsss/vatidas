@@ -1,0 +1,56 @@
+body{
+	margin:0;
+	padding:5px;
+	background-color:#eaeaea;
+}
+#analyzeItem_choice_div{
+	width:100%;
+	padding:5px;
+	padding-bottom:2px;
+	margin-left:30px;
+	border-bottom:3px solid #3887C7;
+}
+#download_div{
+	margin-left:1000px;
+	width:280px;
+	float:right;
+}
+#analyzeView_div{;
+	width:100%;
+	margin-left:30px;
+}
+
+.reminder_text,.downloadText{
+	font-family:'仿宋';
+	font-size:18px;
+	margin:4px;
+	color:#607FB5;
+}
+select,option{
+	margin:10px;		
+	border-radius:3px;
+	margin:5px;
+	font-size:17px;
+	font-family:"仿宋";
+}
+.input_timeBox{
+	border-radius:3px;
+	width:100px;
+	line-height:20px;
+	background-color:#FBFBFB;
+}
+.downloadText{
+	background-color:#0078d7;
+	cursor:pointer;
+	border:2px solid #DBD8D8;
+	height:25px;
+	font-size:17px;
+	font-family:"宋体";
+	color:#fff;
+}
+#dateError{
+	margin-left:900px;
+	font-family:"仿宋";
+	font-size:15px;
+	color:#ff510b;
+}

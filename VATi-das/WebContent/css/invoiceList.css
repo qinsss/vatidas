@@ -1,0 +1,110 @@
+body{
+	margin:0;
+	background-color:#eaeaea;
+}
+#date_choice_div{
+	margin:30px 0 20px 5px;
+	padding-left:5px;
+	float:left;
+}
+
+.reminder_text{
+	font-family:'仿宋';
+	font-size:18px;
+	margin:4px;
+	color:#607FB5;
+}
+select,option{
+	font-family:'仿宋';
+	font-size:15px;
+}
+select,input{
+	padding:3px;
+	border-color:#b4cde6;
+	border-radius:3px;
+}
+input[type="text"]{
+	margin:5px;
+	font-size:16px;
+}
+#invoice_table_div{
+	padding:5px;
+}
+#invoice_table{ 
+	border-collapse:collapse;
+	width:100%;
+	table-layout: fixed;
+	word-wrap:break-word;
+	
+}
+
+a.operate:hover{
+	color:blue;
+}
+td,th{
+	border:2px solid #dedede;
+	line-height:25px;
+ }
+ th{
+	font-family:'仿宋';
+	font-size:20px;
+	color:#607FB5;
+}
+td{
+	line-height:30px;
+	font-family:'仿宋';
+	font-size:18px;
+	color:#1B1C21;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-align:center;
+}
+td:hover{
+	overflow: visible;
+	white-space: normal;
+}
+
+.operate{cursor:pointer;}
+.operate{
+	text-decoration:none;
+	color:#35487e;	
+}
+
+.recoderCount{
+	font-family:"仿宋";
+	font-size:15px;
+	color:black;
+}
+
+.goto_box{
+	width:40px;
+}
+#no_form_div{
+	float:right;
+}
+#no_view_div{
+	margin-top:10px;
+	margin-right:5px;
+	float:right;
+}
+#number_error_div{
+	float:right;
+	margin:10px;
+}
+#gotoNumberError{
+	font-family:"仿宋";
+	font-size:15px;
+	color:#ff510b;
+}
+#dateError{
+	font-family:"仿宋";
+	font-size:15px;
+	color:#ff510b;
+}
+#noInvoiceText{
+	
+	font-family:"仿宋";
+	font-size:25px;
+	color:#607FB5;
+}

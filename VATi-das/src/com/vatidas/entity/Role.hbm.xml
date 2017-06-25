@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.vatidas.entity">
+	<!-- 映射role对象表 -->
+	<class name="Role" table="role">
+		<id name="id" column="id" type="integer">
+			<generator class="identity"/>
+		</id>
+		<!-- 不写列  默认为属性名 -->
+		<property name="name" unique="true" type="string" length="20"/>
+		<property name="roleDesc" type="string" length="50"/>
+		<property name="rightValue" type="integer" />
+		
+		<set name="user"  cascade="save-update" lazy="false">
+			<key column="userId"/>
+			<one-to-many class="User"/>
+		</set>
+		<!-- 角色与权限的关联关系 -->
+		<set name="rights" table="rolr_right_link" cascade="save-update" lazy="false">
+			<key column="roleid"/>
+			<many-to-many class="Right1" column="rightid"/>
+		</set>
+	</class>	
+</hibernate-mapping>  

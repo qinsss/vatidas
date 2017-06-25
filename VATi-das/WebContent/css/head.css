@@ -1,0 +1,40 @@
+body{
+	margin:0;
+	background-color:#35487e;	
+}
+.head_loginInfo_div{
+	float:right;
+	color:#c1d5ec;
+	font-size:20px;
+	background-color:#35487e;
+}
+.menuBar_div{
+	clear:both;
+	height:40px;
+	background-color:#38528d;
+}
+.userNickname{
+	font-size:16px;
+	color:#e8e9ee;
+}
+.logout{cursor:pointer;}
+a.logout:link,a.logout:visited{
+	text-decoration:none;
+	color:#B6CAE1;	
+}
+a.logout:hover{
+	color:#607fba;
+}
+.menuBar_text{
+	margin:20px;
+	padding:5px 10px;
+	font-size:23px;
+	font-family:'宋体';;
+}
+a.menu:link,a.menu:visited{
+	text-decoration:none;
+	color:#FFF;
+}
+a.menu:hover{
+	color:#DFD5D5;
+}

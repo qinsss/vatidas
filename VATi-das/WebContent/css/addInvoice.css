@@ -1,0 +1,80 @@
+body{
+	margin:0;
+	background-color:#eaeaea;
+	font-family:'仿宋';
+}
+#input_div{
+	padding:20px;
+	border:2px solid #38528d;
+	border-radius:5px;
+	width:800px;  
+	height:440px;  
+	position:absolute;  
+	left:50%;  
+	top:50%;  
+	margin:-220px 0 0 -400px ;
+}
+.reminder_text{
+	font-family:"仿宋";
+	color:#000000;
+	font-size:18px;
+}
+#info_form{
+	margin-top:20px;
+}
+.must_mark{
+	margin:5px;
+	color:red;
+	font-size:17px;
+	
+}
+.info_item{
+	margin:5px;
+	font-size:18px;
+	font-family:"仿宋";
+	color:#607FB5;
+}
+.info_input{
+	margin:15px;
+	border-radius:3px;
+	border:0;
+	width:150px;
+	line-height:22px;
+	background-color:#FBFBFB;
+}
+#invoice_unit{
+	width:250px;
+}
+select,option{
+	margin:10px;		
+	border-radius:3px;
+	margin:5px;
+	font-size:17px;
+	font-family:"仿宋";
+	color:#607FB5;
+}
+#submit_input,#reset_input{
+	width:80px;
+	margin-top:20px;
+	padding:1px;
+	background-color:#0078d7;
+	cursor:pointer;
+	border:2px solid #DBD8D8;
+	border-radius:4px;
+	height:30px;
+	font-size:18px;
+	font-family:"宋体";
+	color:#fff;
+}
+
+#submit_input{
+	margin-left:200px;
+	margin-right:40px;
+}
+
+.errorInfo{
+	margin-left:70px;
+	font-family:"仿宋";
+	font-size:16px;
+	color:#ff510b;
+}

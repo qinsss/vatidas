@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+       	http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<import resource="classpath:com/config/springConfigbeans.xml"/>
+	
+	
+	
+	<!-- 指定数据库连接信息 -->
+	<context:property-placeholder location="classpath:com/config/jdbc.properties"/>
+	
+	<!-- 配置数据源c3p0，使用连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverclass}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		
+		<!-- 最大连接数 -->
+		<property name="maxPoolSize" value="${c3p0.pool.size.max}"/>	
+		<!-- 初始化池的数目 -->
+		<property name="initialPoolSize" value="${c3p0.pool.size.ini}"/>
+		<!-- 最小连接数 -->
+		<property name="minPoolSize" value="${c3p0.pool.size.min}"/>
+		<!-- 当前连接用完后每次增加的数目 -->
+		<property name="acquireIncrement" value="${c3p0.pool.size.increment}"/>
+	</bean>
+	
+	
+	<!-- 配置hibernate sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 引入hibernate配置文件 -->
+		<property name="configLocation" value="classpath:com/config/hibernate.cfg.xml"/>
+		<!-- 引入hibernate映射文件，也可在hibernate配置文件中添加 -->
+		<property name="mappingLocations">
+			<value>classpath:com/vatidas/entity/*.hbm.xml</value>
+		</property>
+	</bean>
+		
+	<!-- 使用hibernate的session必须在事务中进行  使用spring的事务管理 -->
+	<!-- 配置spring事务管理 -->
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="logger" class="com.vatidas.other.Logger">
+		<property name="logService" ref="logService"/>
+	</bean>
+
+
+	<!-- 为方法配置事务通知 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*" isolation="DEFAULT" propagation="REQUIRED"/>
+			<tx:method name="add*" isolation="DEFAULT" propagation="REQUIRED" />
+			<tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED"/>
+			<tx:method name="delete*" isolation="DEFAULT" propagation="REQUIRED"/>
+			<tx:method name="find*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>
+			<tx:method name="batch*" isolation="DEFAULT" propagation="REQUIRED" />
+			<!-- 通配  防止遗漏 -->
+			<tx:method name="*" isolation="DEFAULT" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 将事务配置至service层 配置切面  -->
+	<aop:config>
+		<!-- (* *..*Service.*(..)) 第一个*是返回类型，第二个*..是任意包，*Service是以Service结尾的任意类，最后*(..)是任意方法 -->
+		<aop:pointcut expression="execution(* *..*Service.*(..))" id="txPointcut1"/>
+		<aop:pointcut expression="execution(* *..*Dao.*(..))" id="txPointcut2"/>
+		<aop:pointcut expression="(execution(* *..*Service.save*(..)) or execution(* *..*Service.modify*(..)) 
+									or execution(* *..*Service.delete*(..)) or execution(* *..*Service.batch*(..))
+									or execution(* *..*Service.add*(..))) and !bean(logService)" id="logPointcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut1"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut2"/>
+		<aop:aspect id="logAspect" ref="logger">
+			<aop:around method="record" pointcut-ref="logPointcut"/>
+		</aop:aspect>
+	</aop:config>
+</beans>

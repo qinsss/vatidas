@@ -1,0 +1,23 @@
+body{
+	margin:0;
+	background-color:#9cb5b1;
+	}
+#menu_div{
+	margin:10px auto 0 40px;
+	color:#38528d;
+	font-size:20px;
+	width:105px;
+	}
+
+
+li{
+	list-style-type:none;
+	font-size:17px;
+	}
+a.menu_left:link,a.menu_left:visited{
+	text-decoration:none;
+	color:#e1edf9;
+	}
+a.menu_left:hover{
+	color:#38528d;
+}

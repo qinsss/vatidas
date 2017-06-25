@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vatidas.entity.ImportInvoice" table="importInvoice">
+        <id name="id" type="integer">
+        	<generator class="identity" />
+        </id>
+        <property name="commodityName" type="string"/>
+        <property name="money" type="big_decimal"/>
+        <property name="type" type="string"/>
+        <property name="yearMonth" type="date"/>
+    </class>
+</hibernate-mapping>

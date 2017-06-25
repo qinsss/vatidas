@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vatidas.entity.Log1" table="log1">
+    	<id name="id" type="string">
+    		<generator class="uuid"/>
+    	</id>
+    	<property name="operator" type="string" length="50"/>
+    	<property name="operateName" type="string" length="100"/>
+    	<property name="operateTime" type="timestamp"/>
+    	<property name="operateResult" type="string" length="100"/>
+    	<property name="operateParams" type="string" length="200"/>
+    </class>
+</hibernate-mapping>

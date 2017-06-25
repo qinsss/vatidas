@@ -1,0 +1,89 @@
+body{
+	margin:0;
+	padding:5px;
+	background-color:#eaeaea;
+}
+.inputFile_div{
+	margin-top:10px;
+	margin-left:30px;
+	padding:5px;
+	
+	padding-bottom:3px;	
+}
+#analyzeItem_choice_div{
+	width:100%;
+	padding:4px;
+	margin-left:30px;
+	border-bottom:3px solid #3887C7;
+}
+#download_div{
+	margin-left:800px;
+	width:280px;
+	float:right;
+}
+.reminder_text,.downloadText{
+	font-family:'仿宋';
+	font-size:17px;
+	margin:4px;
+	color:#607FB5;
+}
+select,option{
+	margin:10px;		
+	border-radius:3px;
+	margin:5px;
+	font-size:17px;
+	font-family:"仿宋";
+}
+.input{
+	border-radius:3px;
+	font-family:"仿宋";
+	font-size:16px;
+	font-color:#607FB5;
+	width:77px;
+	background-color:#FBFBFB;
+}
+#clearInput{
+	width:120px;
+}
+.fileInput{
+	border-radius:3px;
+	width:250px;
+	height-line:20px;
+	background-color:#FBFBFB;
+}
+.downloadText{
+	background-color:#0078d7;
+	cursor:pointer;
+	border:2px solid #DBD8D8;
+	height:24px;
+	font-size:17px;
+	font-family:"宋体";
+	color:#fff;
+}
+.error{
+	font-family:"仿宋";
+	font-size:15px;
+	color:#ff510b;
+}
+
+.dataView_table{ 
+	border-collapse:collapse;
+	width:70%;
+	table-layout: fixed;
+	word-wrap:break-word;
+	
+}
+td{
+	line-height:30px;
+	font-family:'仿宋';
+	font-size:18px;
+	color:#1B1C21;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-align:center;
+}
+td:hover{
+	overflow: visible;
+	white-space: normal;
+}

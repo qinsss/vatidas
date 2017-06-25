@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+	<!-- 设置false每次获得的是服务器的最新响应 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<package name="vatidas" namespace="/" extends="struts-default">
+		<!-- 注册自定义拦截器 -->
+		<interceptors>
+			<interceptor name="checkLoginInterceptor" class="com.vatidas.interceptor.CheckLoginInterceptor"/>
+			<interceptor name="catchUrlInterceptor" class="com.vatidas.interceptor.CatchUrlInterceptor"/>
+			<interceptor name="rightFilterInterceptor" class="com.vatidas.interceptor.RightFilterInterceptor"/>
+			<interceptor-stack name="myInterceptorStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="checkLoginInterceptor"/>
+				<interceptor-ref name="catchUrlInterceptor"/>
+				<interceptor-ref name="rightFilterInterceptor"/>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myInterceptorStack"/>
+		
+		<!-- 注册全局视图 -->
+		<global-results>
+			<result name="goLogin" type="redirect">/login.jsp</result>
+		</global-results>
+		
+		<!-- action 的创建交由spring容器进行管理 需指定action范围为prototype -->
+		<action name="loginAction_*" class="loginAction" method="{1}">
+			<result name="toMianFramePage">/mainFrame.jsp</result>
+			<result name="logout" type="redirect">/login.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="invoiceAction_*" class="invoiceAction" method="{1}">
+			<result name="invoiceList">/invoiceList.jsp</result>
+			<result name="redirectInvoiceList" type="redirect">/invoiceList.jsp</result>
+			<result name="addInvoice">/addInvoice.jsp</result>
+		</action>
+		
+		<action name="invoiceAnalyzeAction_*" class="invoiceAnalyzeAction" method="{1}">
+			<result name="inOutAnalyze">/inOutAnalyze.jsp </result>
+			<result name="getChart" type="stream">
+				<!-- 类型可以去tomcat/conf/web.xml找到 -->
+				<param name="contentType">image/png</param>	
+				<param name="inputName">inputStreamChart</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+			<result name="dataSheet" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param> 
+				<param name="inputName">inputStreamDataSheet</param>
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		
+		<action name="importDataAnalyzeAction_*" class="importDataAnalyzeAction" method="{1}">
+			<result name="fileError">/errorFile.jsp</result>
+			<result name="importDataAnalyze">/importDataAnalyze.jsp</result>
+			<interceptor-ref name="myInterceptorStack">
+				<!-- 设置上传文件大小和后缀名 -->
+				<param name="fileUpload.maximumSize">1000000</param>
+				<param name="fileUpload.allowedExtensions">.xls,.xlsx</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="accountManagerAction_*" class="accountManagerAction" method="{1}">
+			<result name="findAccount" >/findAccount.jsp</result>
+			<result name="toFindAccount" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">accountManagerAction_findAccount</param>
+			</result>
+			<result name="modifyPassword">/modifyPassword.jsp</result>
+			<result name="editAccount">/addAccount.jsp</result>
+		</action> 
+		
+		<action name="rightAction_*" class="rightAction" method="{1}">
+			<result name="rightManager">/rightManager.jsp</result>
+		</action>
+		
+		<action name="logAction_*" class="logAction" method="{1}">
+			<result name="toFindLog">/findLog.jsp</result>
+		</action>
+	</package>
+</struts>

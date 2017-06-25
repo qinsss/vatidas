@@ -1,0 +1,109 @@
+html,body{
+	margin:0;
+	width:100%;
+	height:100%;
+}
+.login_div{
+	margin:0;
+	padding:0;
+	height:70%;
+	width:100%;
+	border:0;
+	background-color:#9cb5b1;
+}
+.tail_div{
+	margin:0;
+	padding:0;
+	height:30%;
+	width:100%;
+	border:0;
+	background-color:#9bb4b0;
+	background-image:url("../images/login_tail.jpg");
+}
+.login_image_div{
+	margin:0;
+	padding:0;
+	margin-top:6%;
+	margin-left:15%;
+	height:80%;
+	width:36%;
+	float:left;
+	background-image:url("../images/login_logo.jpg");
+	background-repeat:no-repeat;
+	border:2px solid #e5e5e5;
+	border-right:0;
+	border-radius:5px 0 0 5px;
+}
+.login_item_div{
+	float:left;
+	margin:0;
+	padding:0;
+	margin-top:6%;
+	width:26%;
+	height:80%;
+	text-align:center;
+	background-color:#fefefe;	
+	border:2px solid #e5e5e5;
+	border-left:0;
+	border-radius:0 5px 5px 0;
+}
+.login_font_div{
+	height:15%;
+	margin-top:10%;
+}
+.login_font{
+	font-size:28px;
+	color:#3388ff;
+}
+.login_input_div{
+	height:73%;
+	background-color:#fefefe;
+}
+.input_box{
+	width:65%;
+	padding:2%;
+	border-radius:5px;
+	margin-top:5%;
+	border:2px solid #b4cde6;
+}
+.login_input_div input[type="text"],
+.login_input_div input[type="password"]{
+	font-size:16px;
+	text-align:left;
+}
+.error_div{
+	text-align:center;
+}
+#loginError{
+	font-family:"仿宋";
+	font-size:14px;
+	color:#ff510b;
+}
+.validError{
+	margin:0;
+	padding:0;
+	margin-left:1px;
+	list-style-type:none;
+	font-family:"仿宋";
+	font-size:14px;
+	color:#ff510b;
+}
+
+.submit_button{	
+	
+	width:70%;
+	padding:2%;
+	font-size:20px;
+	background-color:#2657a4;
+	color:#F8EFEF;
+	border:0;
+	border-radius:5px;
+	cursor:pointer;
+}
+
+#forgetPass{
+	margin-left:20%;
+	font-family:"仿宋";
+	font-size:14px;
+	color:#9cb5b1;
+}

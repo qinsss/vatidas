@@ -1,0 +1,60 @@
+body{
+	margin:0;
+	background-color:#eaeaea;
+	text-align:center;
+}
+#account_table_div{
+	margin-top:40px;
+	margin-left:50px;
+}
+option{
+	font-family:'仿宋';
+	font-size:15px;
+	color:#607FB5;
+}
+
+#account_table{ 
+	border-collapse:collapse;
+	width:70%;
+	table-layout: fixed;
+	word-wrap:break-word;
+	
+}
+td,th{
+	border:2px solid #dedede;
+	line-height:25px;
+ }
+th{
+	background-color:#4f81bc;
+	font-family:'仿宋';
+	line-height:33px;
+	border-top:2px solid #dedede;
+	border-bottom:2px solid #dedede;
+	font-size:20px;
+	border:0;
+	color:#fff;
+}
+td{
+	line-height:30px;
+	font-family:'仿宋';
+	font-size:18px;
+	color:#1B1C21;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	text-align:center;
+}
+td:hover{
+	overflow: visible;
+	white-space: normal;
+}
+a{
+	color:#0078d7;
+}
+a:link{
+	margin:5px;
+	text-decoration:none;
+}
+a:hover{
+	color:#38528d;
+}

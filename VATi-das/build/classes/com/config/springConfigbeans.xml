@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+       	http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 可使用组件扫描的方式用注解注册bean，但为了结构清晰，所以自己进行bean的注册	
+	<context:component-scan base-package=""></context:component-scan> -->
+	
+	<!-- daoBeans -->
+	<bean id="baseDao" class="com.vatidas.daoImpl.BaseDaoImpl">
+		<property name="sf" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<!-- serviceBeans -->
+	<bean id="baseService" class="com.vatidas.serviceImpl.BaseServiceImpl"/>
+	<bean id="userService" class="com.vatidas.serviceImpl.UserServiceImpl">
+		<property name="userDao" ref="baseDao"/>
+		<property name="roleDao" ref="baseDao"/>
+	</bean>
+	<bean id="invoiceService" class="com.vatidas.serviceImpl.InvoiceServiceImpl">
+		<property name="invoiceDao" ref="baseDao"/>
+		<property name="inOutDao" ref="baseDao"/>
+		<property name="importInvoiceDao" ref="baseDao"/>
+	</bean>
+	<bean id="rightService" class="com.vatidas.serviceImpl.RightServiceImpl">
+		<property name="rightDao" ref="baseDao"/>
+		<property name="roleDao" ref="baseDao"/>
+	</bean>
+	<bean id="logService" class="com.vatidas.serviceImpl.LogServiceImpl">
+		<property name="logDao" ref="baseDao"/>
+	</bean>
+	
+	
+	
+	
+	<!-- 任务明细bean，对石英任务的包装 -->
+	<bean id="jobDetailBean" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.vatidas.other.DynamicCreateLogTableByDate"/>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="logService">
+					<ref bean="logService"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<!-- 触发器bean 设置任务的调度策略 -->
+	<bean id="cronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobDetailBean"/>
+		<property name="cronExpression">
+			<!-- 每月的10号0点整执行 -->
+			<value>00 00 00 10 * ? *</value>
+		</property>
+	</bean>
+	<!-- 调度器工厂bean 启动石英任务的  -->
+	<bean id="xxx" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<ref bean="cronTriggerBean"/>
+		</property>
+	</bean>
+	
+	
+	
+	
+	<!-- spring监听器注册/初始化数据库日志表的生成 -->
+	<bean id="logInitListener" class="com.vatidas.interceptor.InitSystemLogTableListener">
+		<property name="logService" ref="logService"/>
+	</bean>
+	<!-- spring监听器注册/初始化权限放进Application -->
+	<bean id="rightListener" class="com.vatidas.interceptor.InitAllRightListener">
+		<property name="rightService" ref="rightService"/>
+	</bean>
+	
+	
+	
+	
+	<!-- actionBeans -->
+	<bean id="loginAction" class="com.vatidas.action.LoginAction" scope="prototype">
+		<property name="userService" ref="userService"/>
+	</bean>
+	<bean id="invoiceAction" class="com.vatidas.action.InvoiceAction" scope="prototype">
+		<property name="invoiceService" ref="invoiceService"/>
+	</bean>
+	<bean id="invoiceAnalyzeAction" class="com.vatidas.action.InvoiceAnalyzeAction" scope="prototype">
+		<property name="invoiceService" ref="invoiceService"/>
+	</bean>
+	<bean id="importDataAnalyzeAction" class="com.vatidas.action.ImportDataAnalyzeAction" scope="prototype">
+		<property name="invoiceService" ref="invoiceService"/>
+	</bean>
+	<bean id="accountManagerAction" class="com.vatidas.action.AccountManagerAction" scope="prototype">
+		<property name="userService" ref="userService"/>
+	</bean>
+	<bean id="rightAction" class="com.vatidas.action.RightAction" scope="prototype">
+		<property name="rightService" ref="rightService"/>
+	</bean>
+	<bean id="logAction" class="com.vatidas.action.LogAction" scope="prototype">
+		<property name="logService" ref="logService"/>
+	</bean>
+</beans>

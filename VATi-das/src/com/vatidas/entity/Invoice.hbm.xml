@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.vatidas.entity.Invoice" table="invoice">
+       <id name="id">
+       		<generator class="identity"/>
+       </id>
+       <property name="code" type="string" length="30" unique="true" not-null="true"/>
+       <property name="commodityName" type="string" length="20"/>
+       <property name="commodityUnit" type="string" length="10"/>
+       <property name="commodityPrePrice" type="big_decimal" />
+       <property name="commodityNum" type="integer"/>
+       <property name="commodityMoney" type="big_decimal" not-null="true"/>
+       <property name="date" type="date" not-null="true"/>
+       <property name="type" type="string" not-null="true"/>
+       <property name="unit" type="string" length="50"/>
+       <property name="invoiceTaxMoney" type="big_decimal" not-null="true"/>
+       <property name="totalMoney" type="big_decimal" not-null="true"/>
+    </class>
+</hibernate-mapping>
